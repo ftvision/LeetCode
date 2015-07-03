@@ -8,12 +8,19 @@ Leetcode
 #2 Add Two Numbers
 这个题目，姑且算作是练习链表的操作吧。
 
+#3 Longest Substring Without Repeating Characters
+因为要是连续的最长字串，所以直接用了一个hashtable来记录哪些出现过哪些没有出现过，如果hashtable的时间为O(1)，那么整个时间复杂度是O(N)的。思路就是每一次加入一个新的元素，然后检查新的元素是否出现在当前的substring中，如果出现了，那么就把这个substring逐渐从头开始cut，直到与最后一个元素相同的那个元素被cut，然后看看留下来的长度是不是比最大值更大。
+
+
 #6 ZigZag Conversion
 这个题目主要是要搞清楚题目意思。之前明显是理解错了，直到看到解释
 A  C
 | /
 B
 这样子才是ZigZag，才知道原来是先竖直往下走，然后再斜着往上走，再竖直往下走。这样的话，只需要模拟这个位置就好了。
+
+#7 Reverse Integer
+这个主要是要注意overflow的问题。只需要check是不是当前ans超过了214748364，如果超过了，那么ans * 10必定越界；如果没有超过，由于原数不会overflow，所以当ans=214748364的时候，原来的那个数字最高以为只可能是0或者1
 
 #9 Palindrome Number
 这个题目其实还蛮奇怪的。一来是所有负数都不是回文数，这个倒是可以理解；二来是很多人在讨论overflow的问题。如果一个数自己是回文数，那么从左往右看和从右往左看都应该是一样的。如果overflow了这个数reverse之后的表达总是会和原来数值的表达相差一些。当然，倒是可以specific构造一个点使得在MAXLONGINT的条件下不是回文数，栈溢出，且溢出后的结果等于原来的数值。——不过好像ruby能表征的数字非常之大，以至于没有溢出的问题……
@@ -31,6 +38,9 @@ B
 
 3. O(n^2) Hash table，枚举前两个数，然后直接用hash查找第三个数是否存在。Hash table只需要计数某一个值的出现次数。如果1出现3次，那么hash[1]=3, 在枚举前两个值的时候，对应的hash值先减少，比如两个值是1,1，那么这个时候hash[1]=1。
 3.1. 优化方法可以是iterate hash的值，而不是iterate整个数组，那么如果数组里面的值重复的很多的话，整个时间复杂度会是O(n^2)以下。
+
+#17 Letter Combinations of a Phone Number 
+这个dfs或者bfs都可以了。就是一个简单地搜索枚举结果
 
 #21 Merge Two Sorted Lists
 链表的简单操作，应该要用python写一下，ruby总是还是写成了array才行，很奇怪。而且关于short circuit的and和or，在ruby里面用英文的and和or是短路逻辑，用&&和||是非短路逻辑，用&和|是位操作。
@@ -52,6 +62,9 @@ B
 #35 Search Insert Position	
 非常简单的binary search，只是要注意一下如果没找到的时候，要返回哪个值
 
+#38 Count and Say 
+这个就是很基础的字符串模拟
+
 #50 Pow(x, n)	
 这个主要的思路就是二分power，2^4 = (2^2)^2，这样就是O(logN)的时间复杂度了。另外要注意的是这里n可以是负数——这一点是我想得不仔细，没有好好想到这里其实可以是负数。题目只说明了n是整数，没有说一定是positive
 
@@ -59,6 +72,9 @@ B
 1. O(N^2) F[i]表示以i结尾的最大和子串 F[i] = max(A[i], F[j] + Sum(A[j+1]...A[i])) 其中这个部分和可以用累积和直接计算 Sum(A[j+1] ... A[i]) = CumSum(i) - CumSum(j)
 2. O(N) 用部分和的思路来看就是找到 i < j, CumSum(j) - CumSum(i) 最大。 minimal[i]表示截止到i的cumsum最小的值是多少，minimal[i] = min(minimal[i-1], cumsum[i])
 	然后找到cumsum[i] - minimal[i-1]的最大值。当然，这其实可以用O(1)的空间复杂度
+
+#54 Spiral Matrix
+这个跟59题本质上是一样的。简单地说就是按照四个方向走，右、下、左、上，然后再右、下、左、上。关键是每一次要走多远。每次走完就就相对的方向长度减一就好了。代码里面有。
 
 #59 Spiral Matrix II
 这个题目本身不是很难，就是模拟就好了，一个方向跟着走，走不动了就换一个方向就好。但是ruby建立2D数组太难搞了。[About的文章里面介绍了是什么情况](http://ruby.about.com/od/Writing-a-2048-Clone-in-Ruby/fl/Two-Dimensional-Arrays-in-Ruby.htm) 要建立一个不会互相影响的2D数组还是不容易的。可能用Python的话好一点
@@ -88,6 +104,9 @@ B
 1. two pass解就是直接统计0，1，2分别有多少个，然后根据个数直接重新将nums赋值
 2. one pass解 --- 讨论版有很不错的，我还得想想。我觉得我基本上是理解了
 
+#78 Subsets
+很简单的枚举题。可以使用DFS来做。在nums.lenght不是很长的情况下也可以直接用2进制来做，二进制的每一位就表示对应数组对置的元素要不要存在于当前的集合中。
+
 #83 Remove Duplicates from Sorted List
 基础的链表操作，ruby的测试程序怪怪的，答案输出竟然是一个array
 
@@ -107,11 +126,21 @@ B
 #96 Unique Binary Search Trees
 这个就是简单地叠加就好了f[0] = 1, f[i] = sum(f[x] * f[i-x-1])。有人在讨论里面指出来这就是catalan数，好久没有见面了，好亲切。
 
+#98 Validate Binary Search Tree
+基本的二叉树操作，只是要记得记录以当前结点为根的子树的最大值和最小值。然后比较左子树的最大值是否小于root.val，右子树的最小值是不是大于root.val。唯一要注意的是更新当前的最大值、最小值的时候要注意边界情况，即某半边子树是nil的情况
+【需要写一个非递归版本】
+
 #100 Same Tree
 基本的二叉树操作，【需要写一个非递归版本】
 
+#101 Symmetric Tree
+基本的二叉树操作，其实是比较两个树，如果两个数的根的值相同，且A的左子树与B的右子树是镜像；A的右子树与B的左子树镜像，那么A与B就是镜像相等的。然后就是看check(root,root)是不是true就好，【需要写一个非递归版本】
+
 #102 Binary Tree Level Order Traversal
 二叉树BFS，总觉得代码写的很丑啊
+
+#103 Binary Tree Zigzag Level Order Traversal
+二叉树BFS，不过每一层都用stack来存，而不是用简单的array。所以在增广下一层的时候，从栈首开始。总觉得代码写的很丑啊
 
 #104 Maximum Depth of Binary Tree
 基本的二叉树操作，【需要写一个非递归版本】
@@ -145,6 +174,12 @@ iter 2: f = [1, 1, 0], backward f[2] = f[2] + f[1] = 1; f[1] = f[1] + f[0] = 2 =
 #122 Best Time to Buy and Sell Stock II 
 这个题目说的超级不清楚，最后大概的意思是你知道股价，然后如果只买一股，可以随时交易，得到的最大值。基本上策略就是如果第二天比当前涨了，那就当天买第二天卖，赚差价；如果第二天跌了，那么今天就卖掉，第二天不买。所以归根究底就是看连续两天的变化，如果涨了就买，跌了就不买。
 
+#124 Binary Tree Maximum Path Sum
+这个按照道理来说应该算是分治了（后序遍历）。主要是要三种情况，a)最大值在左子树；b)最大值在右子树；c)最大值是一条经过根的路径。为了找到这条经过根的路径，就需要记录另外一个值：以根为终点的single path的最大值。所以就是
+max = max(left, right, cross_path)
+cross_path = max(single_left, 0) + max(single_right,0) + val
+single(Root) = max(max(single_left, 0), max(single_right, 0)) + val
+ 
 #136 Single Number
 1. 用hash table。第一遍，每一个值看看是否在hash table中，如果不在就加入hash table，如果已经在Hash table中就把这个元素删掉。然后最后看Hash table里面那个key的值是多少。O(N) -- 因为scan一遍数组
 2.2. 用hash table也可以每一个key值都计数，但是这样的话最后要扫一遍hash table，时间复杂度有点高。
