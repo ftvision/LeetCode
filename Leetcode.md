@@ -1,12 +1,5 @@
 Leetcode
 
-#1 Two Sum
-1. O(n^2)的算法，对于每一个数值，刷一遍后面的数，看看是否存在加起来等于结果的。
-2. 用Hash Table，每次读入一个值，就把(target - x)这个值和它的位置存到hash表里面，然后对于每一个新值都先check一遍hash表里面有没有，如果存在，就找到了，如果不存在，就加入(target-x)。这个意外的很快啊，如果认为系统实现Hash Table是O(1)的话，这个就是O(N)的算法了
-3. O(NlogN)的算法：排序+二分，先用快速排序一遍，然后对每一个值，进行二分查找是否存在对应的值存在，如果找到了就得到了问题的解，之后只需要把原始index找到就好了
-
-#2 Add Two Numbers
-这个题目，姑且算作是练习链表的操作吧。
 
 #3 Longest Substring Without Repeating Characters
 因为要是连续的最长字串，所以直接用了一个hashtable来记录哪些出现过哪些没有出现过，如果hashtable的时间为O(1)，那么整个时间复杂度是O(N)的。思路就是每一次加入一个新的元素，然后检查新的元素是否出现在当前的substring中，如果出现了，那么就把这个substring逐渐从头开始cut，直到与最后一个元素相同的那个元素被cut，然后看看留下来的长度是不是比最大值更大。
@@ -56,6 +49,9 @@ B
 用两个指针walker & runner分别指接续的两个，然后做好tmp = runner.next, walker.next = tmp, runner.next = walker这样就可以把walker和runner调换顺序。但是问题是walker之前的上一个结点需要现在指向runner。我觉得比较干净的方法是首先用一个dummy node使得dummy.next = head，这样的话可以把程序写的很干净，只要保留last.next = walker，然后在walker和runner转换以后，last.next = runner来更新指向就好了。然后last再跳转到walker
 [这个python程序简直太简略了](https://leetcode.com/discuss/20653/my-accepted-solution-in-python-quite-fast)
 
+#26 Remove Duplicates from Sorted Array 
+跟83是同一道题，不同的是这里是数组，83是链表
+
 #27 Remove Element
 这个题目很直接也很容易，如果当前值不是val，那就加入进队列就好了，否则就不加人
 
@@ -64,6 +60,13 @@ B
 
 #38 Count and Say 
 这个就是很基础的字符串模拟
+
+#48 Rotate Image
+1. 直接用一个新的数组作为过渡空间，然后旋转
+2. in-place transform，我是一圈圈来做的。O(1) in space
+[0,0] - [2,0] - [2, 2] - [0, 2] 这样四个元素依次换
+[0,1] - [1,0] - [2, 1] - [1, 2] 这样四个元素依次换
+也就是(x,y) - (n-1-y, x) 这相邻的两个元素交换位置，三次之后就完成四个元素的交换
 
 #50 Pow(x, n)	
 这个主要的思路就是二分power，2^4 = (2^2)^2，这样就是O(logN)的时间复杂度了。另外要注意的是这里n可以是负数——这一点是我想得不仔细，没有好好想到这里其实可以是负数。题目只说明了n是整数，没有说一定是positive
@@ -106,6 +109,9 @@ B
 
 #78 Subsets
 很简单的枚举题。可以使用DFS来做。在nums.lenght不是很长的情况下也可以直接用2进制来做，二进制的每一位就表示对应数组对置的元素要不要存在于当前的集合中。
+
+#80 Remove Duplicates from Sorted Array II 
+本质上和26题一样，只是可以有两个同样的元素罢了。因为数组已经是排序好了的，每次都把当前元素加入结果数列尾，如果结果数列最后一位等于倒数第三位，那就把最后一位pop出去就好了
 
 #83 Remove Duplicates from Sorted List
 基础的链表操作，ruby的测试程序怪怪的，答案输出竟然是一个array
@@ -229,6 +235,9 @@ single(Root) = max(max(single_left, 0), max(single_right, 0)) + val
 1. 这个本质上是一个模拟题。最简单的办法是用Hashtable，然后每一次产生的值加入hashtable中，如果新产生的某个值已经在hashtable中出现，那么说明有一个环，所以不是happy number；否则会一直迭代到答案为1.
 2. 这个题目本质上可以看做是一个找Link中是否有环的问题：我们想象一下从最初的n到最后的结果是一个链表，i-j是i进行运算之后得到j。那么根据之前的链接表的算法，可以用walker和runner来找这个链表是否存在环，如果存在，就不是happy number，否则就是。[答案由这里提供，实在是太精妙了](https://leetcode.com/discuss/33055/my-solution-in-c-o-1-space-and-no-magic-math-property-involved)
 
+#206 Reverse Linked List
+链表操作，堆栈，直接压栈到linked list最后一个结点，然后逐渐出栈行程link list
+
 #215 Kth Largest Element in an Array
 1 O(NlogN): 排序一遍直接找呗，当然肯定不是为了这么做
 2 O(N * C): 二分答案，每一次假设答案是x，然后看x在数组中第几大，然后逐渐检索缩小范围，或者在大的一半找，或者在小的一半找
@@ -247,3 +256,10 @@ single(Root) = max(max(single_left, 0), max(single_right, 0)) + val
 这几个帖子非常厉害
 [帖子1](https://leetcode.com/discuss/41558/20ms-o-n-time-o-1-space-one-scan-c-solution)
 [帖子2](https://leetcode.com/discuss/41641/17-lines-c-easy-20-ms)
+
+#230 Kth Smallest Element in a BST
+1. 如果只是找一次的话，可以使用中序遍历，第k的遍历到元素就是答案
+2. 如果多次修改的话，每个结点就有维护两个值，一个num(root)，一个left_num(root)，就是以root为根的子树，左子树有多少个结点，一共有多少个结点。
+
+#231 Power of Two 
+bit operation: N & (N-1) 搞定

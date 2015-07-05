@@ -1,9 +1,8 @@
 解题列表
 ========
-
 | # | 标题 | 题解 | 程序 | 最优时空复杂度 | 算法难度 | 编程难度 |
-|---|-----|------|-----|-------------|-------|--------|
-| 1  | Two Sum	| N.A. | [Ruby](./ruby/Q1.rb) / Python| O(N)-O(N) / O(NlogN)-O(1) | Easy | Easy / Medium |
+|:-:|-----|------|-----|-------------|-------|--------|
+| 1  | [Two Sum](https://leetcode.com/problems/two-sum/) | [解答](solution/Q1.md) | [Ruby](./ruby/Q1.rb) <br /> Python| O(N):O(N) <br /> O(NlogN):O(1) | Easy | Easy <br /> Medium |
 | 2	 | Add Two Numbers	| | | | | |
 | 3	 | Longest Substring Without Repeating Characters	| | | | | |
 | 4	 | Median of Two Sorted Arrays | | | | | |
