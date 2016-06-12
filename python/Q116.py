@@ -6,6 +6,7 @@
 #         self.right = None
 #         self.next = None
 
+#bfs O(N) in space
 class Solution:
     # @param root, a tree link node
     # @return nothing
