@@ -1,3 +1,4 @@
-#2 Add Two Numbers
-
-这个题目，姑且算作是练习链表的操作吧。
+Question 137
+Question 160
+vector initialization in C++, and initialization from empty
+OOP的想法还是不熟悉
