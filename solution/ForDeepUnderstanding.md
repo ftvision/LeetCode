@@ -3,3 +3,4 @@
 - vector initialization in C++, and initialization from empty
 - OOP的想法还是不熟悉
 - Question 157
+- Question 234，我之前写的版本怎么写都是TLE，不知道为什么，要重新学着写一下
