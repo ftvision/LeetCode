@@ -1,6 +1,6 @@
 - Question 137
 - Question 160
-- vector initialization in C++, and initialization from empty
+- vector initialization in C++, and initialization from empty；比如155也有同样的问题
 - OOP的想法还是不熟悉
 - Question 157
 - Question 234，我之前写的版本怎么写都是TLE，不知道为什么，要重新学着写一下
@@ -8,3 +8,7 @@
 - Question 203, pointer to pointer还要好好搞一下，现在还没有办法一次性写对这个题目
 - C++的for循环的执行条件
 - Question 290，各种特殊条件一开始都没有想明白。需要好好看看这个题目。
+- 所以unordered_map的存在操作到底哪个快？ `find()!=end()`还是`count()` ？
+- `for (auto p:hash)`是个什么循环语句的迭代方法？(question 170)
+- Question 28的KMP算法肯定是要写一个的
+- Question 8值得注意
