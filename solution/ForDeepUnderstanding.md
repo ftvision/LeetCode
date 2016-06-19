@@ -5,3 +5,6 @@
 - Question 157
 - Question 234，我之前写的版本怎么写都是TLE，不知道为什么，要重新学着写一下
 - Question 190，有趣的位操作
+- Question 203, pointer to pointer还要好好搞一下，现在还没有办法一次性写对这个题目
+- C++的for循环的执行条件
+- Question 290，各种特殊条件一开始都没有想明白。需要好好看看这个题目。
