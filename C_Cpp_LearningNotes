@@ -1,0 +1,147 @@
+answer.txt
+
+What’s 7 times 6?
+#ifdef REVEAL
+42
+#endif
+
+cpp -P answer.txt
+
+output：
+
+	What’s 7 times 6?
+
+cpp -P -D REVEAL answer.txt
+
+output:
+
+	What’s 7 times 6?
+	42
+
+gcc -E hello. ==> preprocessing
+gcc -c main.c answer.c ==> Complie ==> main.o answer.o
+gcc -o prog main.o answer.o ==> Link ==> get a program ./prog
+
+---debug.c
+#include <stdio.h>
+int main() {
+#ifdef DEBUG
+    printf("Hello, World!\n");
+#endif
+return 0; }
+
+gcc -DDEBUG debug.c -o debug
+
+Lecture 2
+
+Anonymous Blocks:
+Anonymous blocks demonstrate the concept of block scope.
+
+void foo(){
+	{ int a = 0; }
+	{
+		double a = 3.14; // no problem!
+		{
+		char * a = "3.14"; // no problem!
+		} 
+	}
+// no 'a' defined in this scope 
+}
+
+Lecture 3
+
+- Memory
+	- Heap is a chunk of memory that users can use to dynamically allocated memory. Lasts until freed, or program exits.
+	- Stack contains local variables from functions and related book-keeping data. LIFO structure. 
+		- Function variables are pushed onto stack when called.
+		- Functions variables are popped off stack when return.
+- Pointer:Pointers are integer variables themselves, so can have pointer to pointers: char **ptr;
+
+Lecture 4
+推荐使用Valgrind
+
+Struct Memory
+- Struct size != sum of member sizes
+- All members must “align” with largest member size
+- Each member has own alignment requirements
+Ex: char = 1-byte aligned.
+short = 2-byte aligned.
+int = 4-byte aligned. ←Refer to documentation
+
+Blackboard Example: 
+struct x{
+char a; //1-byte, must be 1-byte aligned
+short b; //2-bytes, must be 2-byte aligned
+int c; // Biggest member (4-bytes). X must be 4-byte // aligned
+char d;
+}
+
+Unions: Can only access one member at a time. Union stores all data in same chunk of memory.
+
+Lecture 5: C++
+
+Complier: g++ > similar to gcc
+
+g++ -o test test.cpp
+
+
+new memory management :
+
+int * numArray = new int[100]; (取代了malloc)
+delete numArray; (取代了free)
+struct foo * bar = new struct foo; 
+
+Constructor v.s. Destructor
+- Since we explicitly allocated something with new, we must also explicitly de-allocate it.
+
+
+Template
+
+Subclass: inherit fields from the parent
+Inheritence
+
+class Shape {
+public:
+		void draw();
+};
+
+class Circle : public Shape { 
+public:
+  int getRadius();
+};
+
+int main() {
+  Circle circle;
+	circle.draw(); 
+}
+
+
+Is-a 
+class Circle
+: public Shape {
+public:
+	int radius;
+};
+==>circle.x
+
+Has-a
+class Circle {
+public:
+	Shape shape;
+	int radius;
+};
+==?circle.shape.x
+
+private == only that class
+protected == only that class and subclass
+-->protected v.s. private
+
+virtual: virtual function is determined at run-time;
+non-virtual: function is determined at compile-time;
+
+destructor:
+struct Buffer {
+Buffer(int s) { buf = new char[s]; } 
+~Buffer() { delete [] buf; }
+char *buf;
+};

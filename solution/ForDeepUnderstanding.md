@@ -12,3 +12,6 @@
 - `for (auto p:hash)`是个什么循环语句的迭代方法？(question 170)
 - Question 28的KMP算法肯定是要写一个的
 - Question 8值得注意
+- Question 251，学习使用iterator
+- Question 323，for循环执行顺序问题，感觉`for`循环有点像do-while，所以当初始值就不满足终止条件的时候，循环内的语句好像还是执行了一遍。
+- Question 323, union find算法
