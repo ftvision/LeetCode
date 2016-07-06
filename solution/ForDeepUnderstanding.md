@@ -15,3 +15,7 @@
 - Question 251，学习使用iterator
 - Question 323，for循环执行顺序问题，感觉`for`循环有点像do-while，所以当初始值就不满足终止条件的时候，循环内的语句好像还是执行了一遍。
 - Question 323, union find算法
+- 二分算法基本上都写不对：[这里](http://stackoverflow.com/questions/504335/what-are-the-pitfalls-in-implementing-binary-search)有很好的讨论
+- Question 91的边界条件错的很离谱，竟然没有想到那么重要的'0'的边界条件。这道题目主要考细心
+- Question 86的链表使用dummy pointer来引导
+- Question 275 Binary Search！
