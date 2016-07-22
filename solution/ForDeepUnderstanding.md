@@ -19,3 +19,6 @@
 - Question 91的边界条件错的很离谱，竟然没有想到那么重要的'0'的边界条件。这道题目主要考细心
 - Question 86的链表使用dummy pointer来引导
 - Question 275 Binary Search！
+- Question 34 Binary Search
+- Question 11 好题目
+- Question 42 好的解法非常值得学习
