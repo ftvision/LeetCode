@@ -22,3 +22,10 @@
 - Question 34 Binary Search
 - Question 11 好题目
 - Question 42 好的解法非常值得学习
+- Question 49 用了C++11的循环遍历方式，`for (char c : s) {}`，这个很有意思。
+- Question 82 关于pointer to pointer的使用要注意。以及用递归的方法处理链表问题的思路值得学习。
+- Question 90 那个好的解法值得学习
+- Question 15 3Sum竟然没有很好滴写出来
+- Question 29 overflow的问题，各种边界
+- Question 57 边界细节值得注意
+- Question 163 网上的解值得学习
