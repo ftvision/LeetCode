@@ -29,3 +29,8 @@
 - Question 29 overflow的问题，各种边界
 - Question 57 边界细节值得注意
 - Question 163 网上的解值得学习
+- Question 364 one-pass的思路值得学习
+- Question 260 这道题目的思路很巧妙，而且还涉及补码以及`a & (-a)`找到最后一个setBit
+- Question 379 动态数组vector动态分布内存，和使用unordered_set的O(1)，结果发现时间还是慢了！
+- Question 264 这种indexing的思路值得学习
+- Question 284 这个C++语言相关的东西，尤其是涉及到OOP，完全搞不来。
